@@ -48,6 +48,32 @@ body {
 	margin-left: 10px;
 }
 
+/* Input Styles */
+
+.btn {
+	background: #FFF;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  padding: 5px 15px 5px 15px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  border-color: #0CF;
+  text-decoration: none;
+}
+
+.btn:disabled {
+	border-color: #CCC;
+	color: #CCC;
+}
+
 /* Define HTML Tags */
 
 input, button, select, option, textarea {
