@@ -1,0 +1,15 @@
+{
+  "_id": "_design/trips",
+  "views": {
+    "all": {
+      "map": "function(doc) {\n    id = doc._id.split(\":\");\n  emit(id[1]+id[2], doc._id);\n}"
+    },
+    "medallion": {
+      "reduce": "_count",
+      "map": "function(doc) {\n    if(doc.type == \"trip\") {\n        emit(doc.medallion, doc._id);\n    }\n}"
+    },
+    "pickups": {
+      "map": "function(doc) {\n    if(doc.properties.type == \"pickup\") {\n        emit(doc._id, 1);\n    }\n}"
+    }
+  }
+}

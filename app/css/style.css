@@ -1,0 +1,183 @@
+* {
+	margin: 0;
+}
+
+html, body {
+	height:100%;
+	overflow: hidden;
+}
+
+body {
+	background-color: #666;
+	color: #333333;
+	font-size:13px;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+}
+
+#title {
+	margin-left: 30px;
+	color: #FFFFFF;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+}
+
+.title-large {
+	font-size: 16px;
+	margin: 5px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	border-bottom-color: #333333;
+	border-bottom-width: 1px;
+	border-style: none none solid;
+}
+
+.title-medium {
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 5px;
+	border-bottom-color: #333333;
+	border-bottom-width: 1px;
+	border-style: none none solid;
+}
+
+.content-medium {
+	margin-left: 10px;
+}
+
+/* Define HTML Tags */
+
+input, button, select, option, textarea {
+	color: #333333;
+	font-size:13px;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+	margin: 2px;
+}
+
+/* Define Wrappers */
+
+#totalwrapper {
+	background-color: #FFF;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: block;
+	border: 10px solid white;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#wrapper-top {
+	background-color:#0CF;
+	padding: 5px;
+	height: 115px;
+	width: 100%;
+	overflow: hidden;
+	border-bottom: 10px solid white;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#wrapper-status, #toddle {
+	background-color: #390;
+	padding: 5px;
+	margin-bottom: 10px;
+	color: #333333;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	text-align: left;
+}
+
+#wrapper-left {
+	background-color:#0CF;
+	float: left;
+	width: 85%;
+	height: 100%;
+	overflow: hidden;
+}
+
+#map {
+	height: 100%;
+	background-color: #FFF;
+}
+
+#wrapper-right{
+	background-color:#0CF;
+	float: left;
+	width: 15%;
+	height: 100%;
+	overflow: hidden;
+	border-left: 10px solid white;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#floatclear {
+	clear: both;
+}
+
+/* jQuery Sortable */
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+
+/* Leaflet legend */
+.legend {
+		line-height: 18px;
+		color: #555;
+		background-color: #FFF;
+		padding: 4px;
+}
+.legend i {
+		width: 18px;
+		height: 18px;
+		float: left;
+		margin-right: 8px;
+		opacity: 0.7;
+}
+
+/* AJAX Loader */
+.loader {
+	background-image: url("../img/ajax-loader.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #FFF;
+	z-index:999999 !important;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	position: relative;
+	top: 0px;
+	left: 40%;
+	width: 20%;
+	height: 30px;
+}
+
+/* Headings */
+
+h3 {
+	margin: 0;
+	background-color: #0AF;
+}
+
+h3 a {
+	background: url("../img/sprite.png") 15px 13px no-repeat;
+	display: block;
+	padding: 10px;
+	padding-left: 32px;
+	margin: 0;
+	color: #000;
+	text-decoration: none;
+	font-weight: normal;
+}
+h3:hover { background: #0298E3; }
+h3.open  { background: #28B4FA; }
+h3.open a { background-position: 13px -25px; }

@@ -1,0 +1,217 @@
+* {
+	margin: 0;
+}
+
+body {
+	background-color: #666;
+	color: #333333;
+	font-size:13px;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+}
+
+#title {
+	height: 104px;
+	margin-left: 30px;
+	color: #FFFFFF;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+	font-weight: bold;
+	font-size: 30px;
+	padding-top: 53px;
+}
+
+.title-large {
+	font-size: 16px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	border-bottom-color: #333333;
+	border-bottom-width: 1px;
+	border-style: none none solid;
+}
+
+.title-medium {
+	font-size: 13px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	border-bottom-color: #333333;
+	border-bottom-width: 1px;
+	border-style: none none solid;
+}
+
+.content-medium {
+	margin-left: 10px;
+}
+
+#cloudant-response {
+	padding: 5px;
+}
+
+/* Define HTML Tags */
+
+input, button, select, option, textarea {
+	color: #333333;
+	font-size:13px;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+	margin: 2px;
+}
+
+/* Define Wrappers */
+
+#totalwrapper {
+	background-color: #FFF;
+	width: 950px;
+	display: block;
+	margin-top: 20px;
+  	margin-left: auto;
+  	margin-right: auto;
+	padding: 10px;
+}
+
+#wrapper-top {
+	background-color:#0CF;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+#wrapper-bottom {
+	background-color:#0CF;
+	padding: 5px;
+	margin-top: 10px;
+	float:left;
+	width: 940px;
+}
+
+#wrapper-status, #toddle {
+	background-color: #390;
+	padding: 5px;
+	margin-bottom: 10px;
+	color: #333333;
+	font-family: "Helvetica Neue", Gotham, Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	text-align: left;
+}
+
+#wrapper-left {
+	background-color:#0CF;
+	padding: 10px;
+	float: left;
+	width: 600px;
+	min-height: 600px;
+}
+
+#map {
+	height: 600px;
+	background-color: #FFF;
+}
+
+#wrapper-right{
+	background-color:#0CF;
+	padding: 10px;
+	float: left;
+	width: 300px;
+	margin-left: 10px;
+	min-height: 600px;
+}
+
+#floatclear {
+	clear: both;
+}
+
+#cars_combo {
+	width: 280px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#routes_combo {
+	width: 280px;
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+/* jQuery Sortable */
+#sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+#sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+#sortable li span { position: absolute; margin-left: -1.3em; }
+
+/* Online Status */
+#online {
+	position: fixed;
+	top: 0px;
+	left: 80px;
+	background-color: #b3b3b3;
+	border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+	padding: 5px;
+	color: #ffffff;
+}
+
+#status {
+		display: inline;
+		margin-right: 5px;
+}
+
+#online_status {
+	display: inline;
+}
+
+/* Leaflet legend */
+.legend {
+		line-height: 18px;
+		color: #555;
+		background-color: #FFF;
+		padding: 4px;
+}
+.legend i {
+		width: 18px;
+		height: 18px;
+		float: left;
+		margin-right: 8px;
+		opacity: 0.7;
+}
+
+/* AJAX Loader */
+.loader {
+	background-image: url("../img/ajax-loader.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #FFF;
+	z-index:999999 !important;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	position: relative;
+	top: 0px;
+	left: 200px;
+	width: 230px;
+	height: 30px;
+}
+
+/* Carinfo */
+.carinfocontent{
+	background-color: #FFF;
+	height:100px;
+	margin-left: 10px;
+	margin-right: 10px;
+	margin-top: 10px;
+	padding: 2px;
+}
+
+
+h3 {
+	margin: 0;
+	background-color: #0AF;
+}
+
+h3 a {
+	background: url("../img/sprite.png") 15px 13px no-repeat;
+	display: block;
+	padding: 10px;
+	padding-left: 32px;
+	margin: 0;
+	color: #000;
+	text-decoration: none;
+	font-weight: normal;
+}
+h3:hover { background: #0298E3; }
+h3.open  { background: #28B4FA; }
+h3.open a { background-position: 13px -25px; }
