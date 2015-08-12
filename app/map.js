@@ -5,7 +5,8 @@ $( document ).ready(function() {
   // -----------------------
 
   // -- Database --
-  var baseUrl = "https://"+user+":"+pass+"@"+user+".cloudant.com/"; // Base URL of Cloudant
+  var baseUrl = 'https://'+accountname+'.cloudant.com/'; // Base URL of Cloudant
+  var cloudant_auth = btoa(user + ':' + pass); // Creates a Base64 String of the User and Pass
 
   // -- Map --
   var map; // The map
@@ -297,6 +298,7 @@ $( document ).ready(function() {
       url: docUrl,
       xhrFields: { withCredentials: true },
       type: "GET",
+      headers: {'Authorization': 'Basic ' + cloudant_auth, 'Content-Type': 'application/json'},
       error: errorHandler,
       complete: completeHandler
     }).done(func);
