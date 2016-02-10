@@ -110,7 +110,6 @@ $( document ).ready(function() {
     var docUrl = baseUrl + db + '/_design/trips/_view/pickups?include_docs=true&limit=200&stale=ok'; // Search for all trips, no need for most recent (stale=ok)
 
     function parse (data) { // Call after the ajax is done
-      console.log(data);
       var doc = data; // Parse JSON Data into Obj. doc
       var myMarkers = Array();
 
@@ -188,7 +187,7 @@ $( document ).ready(function() {
     var docUrl = baseUrl + db + "/trip:"+idArr[1]+":"+idArr[2]+":"+idArr[3];
 
     function parse(data) {
-      var doc = JSON.parse(data); // Parse JSON Data into Obj. doc
+      var doc = data; // Parse JSON Data into Obj. doc
 
       popupOptions = {maxWidth: 250};
 
