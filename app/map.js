@@ -8,6 +8,13 @@ $( document ).ready(function() {
   var baseUrl = 'https://'+accountname+'.cloudant.com/'; // Base URL of Cloudant
   var cloudant_auth = btoa(user + ':' + pass); // Creates a Base64 String of the User and Pass
 
+  pDoc = baseUrl+"_session";
+  $.post( pDoc, "name="+user+"&password="+pass, function( data ) {
+    console.log(data);
+  });
+
+
+
   // -- Map --
   var map; // The map
   var mapViewLat = 40.73893324113601; // Standard view on map for Lat - NYC
@@ -137,7 +144,7 @@ $( document ).ready(function() {
       e.layer._latlngs.forEach(function(latlng) {
         docUrl += latlng.lng+'%20'+latlng.lat+',';
       });
-      docUrl += e.layer._latlngs[0].lng+'%20'+e.layer._latlngs[0].lat // The first Point needs to be the last as well
+      docUrl += e.layer._latlngs[0].lng+'%20'+e.layer._latlngs[0].lat; // The first Point needs to be the last as well
       docUrl += '))&relation=contains&include_docs=true'; // Alle Punkte die innerhalt des Polygons sind anzeigen
       console.log(docUrl);
     }else if(e.layerType == "marker"){
@@ -145,7 +152,7 @@ $( document ).ready(function() {
     }
 
     if(e.handler == "edit") {
-      swal("Error", "Editing is not supported right now", "error")
+      swal("Error", "Editing is not supported right now", "error");
     }
 
     if( (e.layerType == "circle") ||  (e.layerType == "rectangle") || (e.layerType == "polygon") ) {
@@ -169,13 +176,13 @@ $( document ).ready(function() {
               searchFinished = true;
             }
           }
-        };
+        }
 
         if(searchFinished) {
           pickupMarkerGroup = L.layerGroup(myMarkers).addTo(map);
           searchFinished = false;
         }
-      };
+      }
 
       ajaxGet(docUrl, parse);
     }
@@ -203,8 +210,7 @@ $( document ).ready(function() {
           "<tr><td><b>Extra Charge: </b></td><td>" + doc.properties.surcharge + " $<td></tr>" +
           "<tr><td><b>Tip: </b></td><td>" + doc.properties.tip_amount + " $</td></tr>" +
           "<tr><td><b>Total Price: </b></td><td>" + doc.properties.total_amount + " $</td></tr>" +
-          "<tr><td><b>Payment Type: </b></td><td>" + doc.properties.payment_type + "</td></tr></table><br>"
-          ,popupOptions);
+          "<tr><td><b>Payment Type: </b></td><td>" + doc.properties.payment_type + "</td></tr></table><br>", popupOptions);
 
       function showRoad(latlng, open) {
         var geocoder = new google.maps.Geocoder();
@@ -230,10 +236,10 @@ $( document ).ready(function() {
         }
       }
 
-      start = Object();
+      start = {};
       start.lat = doc.geometry.coordinates[0][1];
       start.lng = doc.geometry.coordinates[0][0];
-      end = Object();
+      end = {};
       end.lat = doc.geometry.coordinates[1][1];
       end.lng = doc.geometry.coordinates[1][0];
       e.start = start;
@@ -276,7 +282,7 @@ $( document ).ready(function() {
         routesLayer.clearLayers();
         routesLayer.addData(startPoint).addTo(map);
         routesLayer.addData(endPoint).addTo(map);
-        routesLayer.addData(myLines).addTo(map).bindPopup("<b>Start: </b>"+e.startName+"<br><b>End: </b>"+e.endName).openPopup();;
+        routesLayer.addData(myLines).addTo(map).bindPopup("<b>Start: </b>"+e.startName+"<br><b>End: </b>"+e.endName).openPopup();
       }
     });
 
@@ -285,7 +291,7 @@ $( document ).ready(function() {
   // -- Creates a GeoJSON Polyline from an Array --
   function makeGeoJSONPolyLine(latLngArr) {
     geoArr = [];
-    for(i in latLngArr) {
+    for(var i in latLngArr) {
       geoArr.push(Array(parseFloat(latLngArr[i][1]), parseFloat(latLngArr[i][0])));
     }
 
@@ -294,13 +300,16 @@ $( document ).ready(function() {
 
   // -- Ajax Get Function --
   function ajaxGet(docUrl, func) {
+
     $.ajax({ // Start AJAX Call
       url: docUrl,
-      xhrFields: { withCredentials: true },
       type: "GET",
+      xhrFields: { withCredentials: true },
+      dataType: "json",
+      crossDomain: true,
       headers: {'Authorization': 'Basic ' + cloudant_auth, 'Content-Type': 'application/json'},
       error: errorHandler,
-      complete: completeHandler
+      complete: completeHandler,
     }).done(func);
   }
 
@@ -416,7 +425,7 @@ $( document ).ready(function() {
   // -- Things to do on Page start --
   function onStartup() {
     $(".carinfo").hide(); // Hide Car Information Box
-    $("#wrapper-status").hide() // Hide the green box on top for status information
+    $("#wrapper-status").hide(); // Hide the green box on top for status information
     $(".loader").hide(); // Hide the AJAX loader
 
     map = createMap(); // Create the default map
