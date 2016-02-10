@@ -1,19 +1,12 @@
 $( document ).ready(function() {
 
-  // -----------------------
+  // ----------------------
   // - Global Variables -
-  // -----------------------
+  // ----------------------
 
-  // -- Database --
+  // -- Database Auth --
   var baseUrl = 'https://'+accountname+'.cloudant.com/'; // Base URL of Cloudant
   var cloudant_auth = btoa(user + ':' + pass); // Creates a Base64 String of the User and Pass
-
-  pDoc = baseUrl+"_session";
-  $.post( pDoc, "name="+user+"&password="+pass, function( data ) {
-    console.log(data);
-  });
-
-
 
   // -- Map --
   var map; // The map
@@ -46,7 +39,7 @@ $( document ).ready(function() {
   // - General Functions -
   // -------------------------
 
-  // -- Create the default map --
+  // -- Create the default map (1st Action) --
   function createMap() {
     key = 'pk.eyJ1IjoiZGVtb2VobiIsImEiOiJ3TWtKUmFNIn0.PhNsdyuZmBprwq6bNLQjmQ'; // Key to access the MapBox Service
     var mapboxUrl = 'https://{s}.tiles.mapbox.com/v3/demoehn.k6ecah3n/{z}/{x}/{y}.png'; // The URL to the MapBox Service
@@ -112,9 +105,9 @@ $( document ).ready(function() {
     return map;
   }
 
-  // -- Load first 200 Taxi Pickup positions --
+  // -- Load first 200 Taxi Pickup positions (2nd Action) --
   function getTaxiPickups() {
-    var docUrl = baseUrl + db + '/_design/trips/_view/pickups?include_docs=true&limit=200'; // Search for all trips
+    var docUrl = baseUrl + db + '/_design/trips/_view/pickups?include_docs=true&limit=200&stale=ok'; // Search for all trips, no need for most recent (stale=ok)
 
     function parse (data) { // Call after the ajax is done
       var doc = JSON.parse(data); // Parse JSON Data into Obj. doc
