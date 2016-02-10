@@ -111,7 +111,7 @@ $( document ).ready(function() {
 
     function parse (data) { // Call after the ajax is done
       console.log(data);
-      var doc = JSON.parse(data); // Parse JSON Data into Obj. doc
+      var doc = data; // Parse JSON Data into Obj. doc
       var myMarkers = Array();
 
       for(var i=0; i < doc.rows.length; i++) { // Go through each Document and insert into Dropdown
