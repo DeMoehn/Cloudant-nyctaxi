@@ -34,6 +34,7 @@ $( document ).ready(function() {
   var currentBookmark = "";  // Bookmark cache for paging trough queries
   var searchFinished = false; // Flag for paging trough queries
   var taxisLoaded = false; // Flag is taxis are already loaded
+  var geoSearch = 0; // Number of Geo Devices loaded
 
   // -------------------------
   // - General Functions -
@@ -114,7 +115,6 @@ $( document ).ready(function() {
       var myMarkers = Array();
 
       for(var i=0; i < doc.rows.length; i++) { // Go through each Document and insert into Dropdown
-        console.log(doc.rows[i].doc);
         taxisLayer.addData(doc.rows[i].doc);
       }
       taxisLayer.addTo(map); // Add Info to map
@@ -138,7 +138,7 @@ $( document ).ready(function() {
         docUrl += latlng.lng+'%20'+latlng.lat+',';
       });
       docUrl += e.layer._latlngs[0].lng+'%20'+e.layer._latlngs[0].lat; // The first Point needs to be the last as well
-      docUrl += '))&relation=contains&include_docs=true'; // Alle Punkte die innerhalt des Polygons sind anzeigen
+      docUrl += '))&relation=contains&limit=200&include_docs=true'; // Alle Punkte die innerhalt des Polygons sind anzeigen
       console.log(docUrl);
     }else if(e.layerType == "marker"){
       getLocation(e);
@@ -151,10 +151,12 @@ $( document ).ready(function() {
     if( (e.layerType == "circle") ||  (e.layerType == "rectangle") || (e.layerType == "polygon") ) {
 
       function parse (data) { // After the call is done
-        var doc = JSON.parse(data); // Parse JSON Data into Obj. doc
+        var doc = data; // Parse JSON Data into Obj. doc
+
         var myMarkers = Array();
 
         for(var i=0; i < doc.rows.length; i++) { // Go through each Document and insert into Dropdown
+          geoSearch++; // Increase Number of GeoObjects found
           var point_id = doc.rows[i].doc.id;
 
           taxisLayer.addData(doc.rows[i].doc);
@@ -162,9 +164,16 @@ $( document ).ready(function() {
 
           //Loads all the data by iterating trough the booksmarks
           if(doc.bookmark) {
-            if(doc.bookmark != currentBookmark) {
-              ajaxGet(docUrl+"&bookmark="+doc.bookmark, parse);
-              currentBookmark = doc.bookmark;
+            if(doc.bookmark !== currentBookmark) {
+              swal({   title: "Load more cars?",
+                          text: "Geo-Queries can only load 200 objects at once, but there are more. (Objects loaded: "+geoSearch+")",
+                          type: "info",
+                          showCancelButton: true,
+                          allowOutsideClick: true,
+                          confirmButtonColor: "#33CC33",
+                          confirmButtonText: "Yes!",
+                          closeOnConfirm: false },
+                          function(){   ajaxGet(docUrl+"&bookmark="+doc.bookmark, parse); currentBookmark = doc.bookmark; });
             }else{
               searchFinished = true;
             }
@@ -174,9 +183,10 @@ $( document ).ready(function() {
         if(searchFinished) {
           pickupMarkerGroup = L.layerGroup(myMarkers).addTo(map);
           searchFinished = false;
+          geoSearch = 0;
         }
       }
-
+      console.log(docUrl);
       ajaxGet(docUrl, parse);
     }
   }

@@ -7,35 +7,43 @@ Cloudant GeoMap with NYC Taxi Data
 ##Data set?
 The data is available for replication via:
 
-* Car data: https://demoehn.cloudant.com/telematics
-* Regions data: https://demoehn.cloudant.com/regions_low
-
-You can also find the raw data in '/data'
+* Cloudant NYC Taxi: https://demoehn.cloudant.com/nyctaxidata
+* The complete set: http://www.andresmh.com/nyctaxitrips/
 
 ##Description
-A simple and quick hacked **automotive** webpage to demonstrate **Cloudant Geospatial** Queries.
-The app is built using **HTML5** and **Javascript** (lots of jQuery) including the OpenSource "**LeafletJS**" Map to show Geo-information on an interactive map.
+This application is a reused version of my Cloudant GeoMap demo. It's still WIP but is intented to show live data from the NYC Taxi Data set from 2013 (see "Data set?").
 
-The application is based on automotive data gathered via a project where 5 colleagues actually used a small device in their cars to track values like coordinates, speed, direction, acceleration, etc. during their rides. The application is used to visualize this data and make it explorable via an interface, Google address APIs, Heatmaps, etc.
+Currently the application **displays** all the first 200 **Taxi trips on the map** and you can click on the markers and **read all details** (e.g. #Passengers, distance, duration, rating, ...). Furthermore Google APIs are used to **draw a theoretical route** (as we only have start&end coordinates) to the map. Of course - as in the GeoMap - you can query for more taxi data by using different shapes and **Cloudants GeoSpatial Queries**.
 
-The app is just quickly hacked to demonstrate Cloudant geospatial, no awareness given to optimized or good coding! It's developed to be displayed on Safari and should also work with iPad, but no work was done to make it a real responsive Web app.
+With the help of **Cloudants Schema Discovery Process** (SDP) data can also be transformed to relational and analyzed with R*.
+
+The app is just quickly hacked to demonstrate Cloudant geospatial, no awareness given to optimized or good coding! It's developed to be displayed on Safari only, no work was done to make it a responsive Web app at all.
 
 ##Screenshots
-Create a heatmap by car locations:<br />
-<img src="https://raw.githubusercontent.com/DeMoehn/Cloudant-geomap/master/github-data/map-heatmap.png" width="500"/>
+Display some taxi routes on the map:<br />
+<img src="https://raw.githubusercontent.com/DeMoehn/Cloudant-nyctaxi/master/github-data/demo-overview.png" width="500"/>
+
+Query for special areas:<br />
+<img src="https://raw.githubusercontent.com/DeMoehn/Cloudant-nyctaxi/master/github-data/demo-geo.png" width="500"/>
+
+View trip details:<br />
+<img src="https://raw.githubusercontent.com/DeMoehn/Cloudant-nyctaxi/master/github-data/demo-details.png" width="500"/>
+
+Create theoretical route:<br />
+<img src="https://raw.githubusercontent.com/DeMoehn/Cloudant-nyctaxi/master/github-data/demo-route.png" width="500"/>
 
 ##Presentation
-Also some more detailed information is available via a [PowerPoint Presentation](https://github.com/DeMoehn/Cloudant-geomap/blob/master/github-data/geomap-example.pptx)
+Also some more detailed information is available via a [PowerPoint Presentation](https://github.com/DeMoehn/Cloudant-nyctaxi/blob/master/github-data/NYCTAXI-demo_SebastianMoehn.pptx)
 
 ##Deploy on IBM Bluemix
 * Login to IBM Bluemix via the CF Command Line Tool
 ```
-      $ cf login
+$ cf login
 ```
 
 * Change to the app directory and push the inital application via (Change APPN-AME!):
 ```
-      $ cf push APP-NAME -m 64M -b https://github.com/cloudfoundry/staticfile-buildpack.git -s cflinuxfs2
+$ cf push APP-NAME -m 64M -b https://github.com/cloudfoundry/staticfile-buildpack.git -s cflinuxfs2
 ```
 
 * To add Git-Integration go to: https://hub.jazz.net/ and either login or create an account
